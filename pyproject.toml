@@ -1,14 +1,87 @@
-[project]
+[project]                       
 name = "pyincus"
 version = "0.1.0"
-description = "Add your description here"
+description = "SDK for interacting with incus"
 readme = "README.md"
 authors = [
     { name = "Edmilson Monteiro Rodrigues Neto", email = "edmilson.rodriguesn38@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+license = "MPL-2.0"	
+license-files = ["LICENSE"]
+classifiers = [
+	"Programming Language :: Python :: 3.13",
+	"Operating System :: POSIX :: Linux",
+	"Development Status :: 1 - Planning",
+	"License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+]
+
+dependencies = [
+    "aiohttp>=3.12.14",
+]
+
+[project.urls]
+Source = "https://github.com/EdmilsonRodrigues/pyincus"
+Homepage = "https://pyincus.edmilsonrodrigues.com"
+Issues = "https://github.com/EdmilsonRodrigues/pyincus/issues"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+build = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
+dev = [
+    "mypy>=1.17.0",
+    "ruff>=0.12.3",
+]
+test = [
+    "pytest>=8.4.1",
+]
+
+[tool.ruff]
+exclude = ["tests"]
+line-length = 79
+preview = true
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+preview = true
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # fastapi
+    "FAST",
+    # bandit
+    "S",
+    # pycodestyle Warnings
+    "W",
+    # pydocstyle
+    "D",
+    # pylint
+    "PL"
+]
+ignore = [
+    # incorrect-blank-line-before-class
+    "D203",
+    # multi-line-summary-first-line
+    "D212",
+    # no use of assert
+    "S101",
+]
