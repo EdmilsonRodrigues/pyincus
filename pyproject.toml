@@ -7,7 +7,7 @@ packages = ["src/pyincus"]
 
 [project]                       
 name = "pyincus"
-version = "0.1.0"
+version = "0.1.1"
 description = "SDK for interacting with incus"
 readme = "README.md"
 authors = [
