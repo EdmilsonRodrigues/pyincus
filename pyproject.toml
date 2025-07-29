@@ -1,3 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[build.targets.wheel]
+packages = ["src/pyincus"]
+
 [project]                       
 name = "pyincus"
 version = "0.1.0"
@@ -16,18 +23,10 @@ classifiers = [
 	"License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
 ]
 
+
 dependencies = [
     "aiohttp>=3.12.14",
 ]
-
-[project.urls]
-Source = "https://github.com/EdmilsonRodrigues/pyincus"
-Homepage = "https://pyincus.edmilsonrodrigues.com"
-Issues = "https://github.com/EdmilsonRodrigues/pyincus/issues"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 [dependency-groups]
 build = [
@@ -38,12 +37,18 @@ dev = [
     "mypy>=1.17.0",
     "ruff>=0.12.3",
 ]
-test = [
+tests = [
+    "factory-boy>=3.3.3",
     "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
 ]
 
+[project.urls]
+Source = "https://github.com/EdmilsonRodrigues/pyincus"
+Homepage = "https://pyincus.edmilsonrodrigues.com"
+Issues = "https://github.com/EdmilsonRodrigues/pyincus/issues"
+
 [tool.ruff]
-exclude = ["tests"]
 line-length = 79
 preview = true
 
@@ -66,8 +71,6 @@ select = [
     "SIM",
     # isort
     "I",
-    # fastapi
-    "FAST",
     # bandit
     "S",
     # pycodestyle Warnings
@@ -84,4 +87,6 @@ ignore = [
     "D212",
     # no use of assert
     "S101",
+    # random is not cryptographic
+    "S311"
 ]
