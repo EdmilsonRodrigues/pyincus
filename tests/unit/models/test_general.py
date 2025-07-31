@@ -102,3 +102,57 @@ def test_filter_query_inversion(faker, model_field_generator, random_query):
     result = ~query
 
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    'operation,symbol',
+    ((FilterOperation.EQUALS, '=='), (FilterOperation.NOT_EQUALS, '!=')),
+)
+@pytest.mark.parametrize(
+    'cls,class_name',
+    (
+        (object, 'object'),
+        (FilterOperation, 'FilterOperation'),
+        (ModelField, 'ModelField'),
+        (FilterQuery, 'FilterQuery'),
+    ),
+)
+def test_simple_filter_query_representation(
+    faker, operation, symbol, cls, class_name
+):
+    """
+    Test the representation of a simple FilterQuery object.
+
+    It should be clear for debugging reasons, having the class that the model
+    field is attached, and its field name, the logical operation and the value.
+    """
+    field_name, field_value = faker.word(), faker.word()
+    model_field = ModelField(cls, field_name)
+    query = FilterQuery(model_field, operation, field_value)
+    expected = f"{class_name}.{field_name} {symbol} '{field_value}'"
+
+    result = repr(query)
+
+    assert result == expected
+
+
+
+@pytest.mark.parametrize(
+    "operation,symbol",
+    (
+        (FilterOperation.AND, 'and'),
+        (FilterOperation.OR, 'or')
+    )
+)
+def test_nested_filter_query_representation(random_query, operation, symbol):
+    """
+    Test the representation of a nested FilterQuery object.
+
+    It should be clear for debugging reasons, having the representation
+    of both filter_operations and the operator between them.
+    """
+    query1, query2 = random_query(), random_query()
+    query = FilterQuery(query1, operation, query2)
+    expected = f'{} {} {}'
+
+    
