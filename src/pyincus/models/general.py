@@ -85,7 +85,7 @@ class FilterQuery:
     def __repr__(self):
         """Return a programming-like representation."""
         if self.second_value is Unset:
-            return f'not {self.second_value!r}'
+            return f'not {self.first_value!r}'
 
         return ' '.join((
             repr(self.first_value),
@@ -96,9 +96,12 @@ class FilterQuery:
     def __str__(self):
         """Return the used representation."""
         if self.second_value is Unset:
-            return f'not {self.first_value!r}'
+            return f'not {self.first_value}'
 
-        return f'{self.first_value} {self.operation} {self.second_value!r}'
+        stringify = str if isinstance(self.second_value, type(self)) else repr
+        return f'{self.first_value} {self.operation} ' + stringify(
+            self.second_value
+        )
 
     def __eq__(self, other):
         """Evaluate equality between two queries."""
