@@ -89,3 +89,11 @@ ignore = [
     # random is not cryptographic
     "S311"
 ]
+
+[tool.pytest.ini_options]
+addopts = "-vvv --cov=src --cov-report html"
+testpaths = [
+    "tests/unit",
+    "tests/integration",
+    "tests/e2e",
+]
