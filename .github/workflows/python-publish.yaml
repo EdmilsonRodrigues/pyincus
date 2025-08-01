@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   release-build:
-    name: Build release for python version ${{ matrix.python-version }}  
+    name: Build release for python version ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
