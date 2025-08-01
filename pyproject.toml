@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [build.targets.wheel]
 packages = ["src/pyincus"]
 
-[project]                       
+[project]
 name = "pyincus"
 version = "0.1.1"
 description = "SDK for interacting with incus"
@@ -14,7 +14,7 @@ authors = [
     { name = "Edmilson Monteiro Rodrigues Neto", email = "edmilson.rodriguesn38@gmail.com" }
 ]
 requires-python = ">=3.13"
-license = "MPL-2.0"	
+license = "MPL-2.0"
 license-files = ["LICENSE"]
 classifiers = [
 	"Programming Language :: Python :: 3.13",
@@ -34,6 +34,7 @@ build = [
 ]
 dev = [
     "mypy>=1.17.0",
+    "pre-commit>=4.2.0",
     "ruff>=0.12.3",
 ]
 tests = [

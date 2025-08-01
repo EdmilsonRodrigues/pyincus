@@ -1,0 +1,30 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: detect-private-key
+      - id: trailing-whitespace
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.7
+  hooks:
+    - id: ruff
+      args: [ --preview, --fix ]
+    - id: ruff-format
+      args: [ --preview ]
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.17.1'  # Use the sha / tag you want to point at
+    hooks:
+    -   id: mypy
