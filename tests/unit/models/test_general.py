@@ -4,7 +4,12 @@ import random
 
 import pytest
 
-from pyincus.models.general import FilterOperation, FilterQuery, ModelField
+from pyincus.models.fields import (
+    FilterOperation,
+    FilterQuery,
+    ModelField,
+    PyIncusException,
+)
 
 
 @pytest.fixture
@@ -265,3 +270,22 @@ def test_invert_filter_query_string(random_query):
     result = str(inverted)
 
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    'operation',
+    (
+        FilterOperation.AND,
+        FilterOperation.OR,
+        FilterOperation.NOT,
+        FilterOperation.EQUALS,
+        FilterOperation.NOT_EQUALS,
+    ),
+)
+def test_invalid_filter_query(random_query, operation):
+    """FilterQuery should only be Unset if testing for Not."""
+    with pytest.raises(PyIncusException):
+        if operation == FilterOperation.NOT:
+            FilterQuery(random_query(), operation, random_query())
+        else:
+            FilterQuery(random_query(), operation)
