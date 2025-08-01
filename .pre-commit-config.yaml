@@ -17,3 +17,10 @@ repos:
       - id: mixed-line-ending
       - id: detect-private-key
       - id: trailing-whitespace
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.7
+  hooks:
+    - id: ruff
+      args: [ --preview, --fix ]
+    - id: ruff-format
+      args: [ --preview ]
