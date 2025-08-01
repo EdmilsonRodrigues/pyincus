@@ -274,13 +274,7 @@ def test_invert_filter_query_string(random_query):
 
 @pytest.mark.parametrize(
     'operation',
-    (
-        FilterOperation.AND,
-        FilterOperation.OR,
-        FilterOperation.NOT,
-        FilterOperation.EQUALS,
-        FilterOperation.NOT_EQUALS,
-    ),
+    tuple(FilterOperation.__members__.values()),
 )
 def test_invalid_filter_query(random_query, operation):
     """FilterQuery should only be Unset if testing for Not."""
